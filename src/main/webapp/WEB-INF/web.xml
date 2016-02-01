@@ -21,7 +21,7 @@
 		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
 		<init-param>
 			<param-name>applicationClassName</param-name>
-			<param-value>jp.co.nichiwa_system.wicket_todo.WicketApplication</param-value>
+			<param-value>jp.co.nichiwa_system.wicket_todo.infrastracture.WicketApplication</param-value>
 		</init-param>
 	</filter>
 

@@ -1,5 +1,6 @@
-package jp.co.nichiwa_system.wicket_todo;
+package jp.co.nichiwa_system.wicket_todo.infrastracture;
 
+import jp.co.nichiwa_system.wicket_todo.HomePage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
