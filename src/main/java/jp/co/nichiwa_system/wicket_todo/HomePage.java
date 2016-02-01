@@ -12,9 +12,8 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.PropertyModel;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -29,14 +28,13 @@ public class HomePage extends WebPage {
 					getModelObject().newTask();
 				}
 			}.add(
-				new ListView<Todo>("list") {
+				new PropertyListView<Todo>("list") {
 					@Override
 					protected void populateItem(ListItem<Todo> li) {
-						Todo todo = li.getModelObject();
 						li.add(
-							new CheckBox("done", new PropertyModel(todo, "done")),
-							new Label("description", new PropertyModel(todo, "description")),
-							DateLabel.forShortStyle("due", new PropertyModel(todo, "due"))
+							new CheckBox("done"),
+							new Label("description"),
+							DateLabel.forShortStyle("due")
 						);
 					}
 				},
