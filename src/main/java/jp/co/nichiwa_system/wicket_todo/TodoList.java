@@ -28,6 +28,8 @@ import java.util.List;
 class TodoList implements Serializable {
 
 	private final List<Todo> list = new ArrayList<>();
+    
+    // FIXME!! TodoListにこれがあるのはおかしい。新しいTodoを一個持ってる？
 	private String description = "";
 	private Date due;
 	
