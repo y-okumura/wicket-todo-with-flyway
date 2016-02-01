@@ -50,6 +50,5 @@ public class HomePage extends WebPage {
 				}
 			).setOutputMarkupId(true)
 		);
-
     }
 }
