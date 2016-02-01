@@ -1,5 +1,6 @@
 package jp.co.nichiwa_system.wicket_todo;
 
+import jp.co.nichiwa_system.wicket_todo.infrastracture.WicketApplication;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
