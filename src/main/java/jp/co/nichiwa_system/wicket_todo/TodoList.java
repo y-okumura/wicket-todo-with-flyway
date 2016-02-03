@@ -16,12 +16,9 @@
 package jp.co.nichiwa_system.wicket_todo;
 
 import java.io.Serializable;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -57,90 +54,5 @@ class TodoList implements Serializable {
      */
     public void setNextTask(Todo nextTask) {
         this.nextTask = nextTask;
-    }
-}
-
-/**
- *
- * @author okumura
- */
-class Todo implements Serializable {
-
-    private boolean done;
-    private String description;
-    private Date due;
-
-    Todo() {
-        this("", null);
-    }
-
-    public Todo(String description, Date due) {
-        this.description = description;
-        this.due = due;
-    }
-
-    public static Todo done(String description, Date due) {
-        Todo todo = new Todo(description, due);
-        todo.setDone(true);
-        return todo;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDue() {
-        return due;
-    }
-
-    public void setDue(Date due) {
-        this.due = due;
-    }
-
-    @Override
-    public String toString() {
-        return MessageFormat.format("{0}{1}({2,date})", done ? '☑' : '□', description, due);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + (this.done ? 1 : 0);
-        hash = 73 * hash + Objects.hashCode(this.description);
-        hash = 73 * hash + Objects.hashCode(this.due);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Todo other = (Todo) obj;
-        if (this.done != other.done) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.due, other.due)) {
-            return false;
-        }
-        return true;
     }
 }
