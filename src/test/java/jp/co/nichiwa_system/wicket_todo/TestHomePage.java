@@ -44,8 +44,8 @@ public class TestHomePage {
         tester.startPage(HomePage.class);
         FormTester form = tester.newFormTester("todoList");
 
-        form.setValue("description", "新しいタスクの説明");
-        form.setValue("due", "2016/2/1");
+        form.setValue("nextTask.description", "新しいタスクの説明");
+        form.setValue("nextTask.due", "2016/2/1");
         form.submit("add");
         
         tester.assertListView("todoList:list", Arrays.asList(
