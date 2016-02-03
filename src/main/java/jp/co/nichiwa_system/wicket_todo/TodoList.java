@@ -29,40 +29,35 @@ import java.util.Objects;
  */
 class TodoList implements Serializable {
 
-	private final List<Todo> list = new ArrayList<>();
-    
-    // FIXME!! TodoListにこれがあるのはおかしい。新しいTodoを一個持ってる？
-	private String description = "";
-	private Date due;
-	
-	public TodoList() {
-	}
+    private final List<Todo> list = new ArrayList<>();
 
-	void newTask() {
-		list.add(new Todo(description, due));
-		description = "";
-		due = null;
-	}
+    private Todo nextTask = new Todo();
 
-	public String getDescription() {
-		return description;
-	}
+    public TodoList() {
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    void addTask() {
+        list.add(nextTask);
+        nextTask = new Todo();
+    }
 
-	public Date getDue() {
-		return due;
-	}
+    public List<Todo> getList() {
+        return Collections.unmodifiableList(list);
+    }
 
-	public void setDue(Date due) {
-		this.due = due;
-	}
-	
-	public List<Todo> getList() {
-		return Collections.unmodifiableList(list);
-	}
+    /**
+     * @return the nextTask
+     */
+    public Todo getNextTask() {
+        return nextTask;
+    }
+
+    /**
+     * @param nextTask the nextTask to set
+     */
+    public void setNextTask(Todo nextTask) {
+        this.nextTask = nextTask;
+    }
 }
 
 /**
@@ -70,50 +65,55 @@ class TodoList implements Serializable {
  * @author okumura
  */
 class Todo implements Serializable {
-	private boolean done;
-	private String description;
-	private Date due;
-	
-	public Todo(String description, Date due) {
-		this.description = description;
-		this.due = due;
-	}
-	
-	public static Todo done(String description, Date due) {
+
+    private boolean done;
+    private String description;
+    private Date due;
+
+    Todo() {
+        this("", null);
+    }
+
+    public Todo(String description, Date due) {
+        this.description = description;
+        this.due = due;
+    }
+
+    public static Todo done(String description, Date due) {
         Todo todo = new Todo(description, due);
         todo.setDone(true);
         return todo;
-	}
+    }
 
-	public boolean isDone() {
-		return done;
-	}
+    public boolean isDone() {
+        return done;
+    }
 
-	public void setDone(boolean done) {
-		this.done = done;
-	}
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Date getDue() {
-		return due;
-	}
+    public Date getDue() {
+        return due;
+    }
 
-	public void setDue(Date due) {
-		this.due = due;
-	}
+    public void setDue(Date due) {
+        this.due = due;
+    }
 
     @Override
     public String toString() {
-        return MessageFormat.format("{0}{1}({2,date})", done?'☑':'□', description, due);
+        return MessageFormat.format("{0}{1}({2,date})", done ? '☑' : '□', description, due);
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
