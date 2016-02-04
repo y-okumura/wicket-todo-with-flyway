@@ -19,14 +19,19 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 /**
  *
  * @author okumura
  */
+@Entity
 class Todo implements Serializable {
 
+    private @Id @GeneratedValue Long id;
     private boolean done;
     private String description;
     private Date due;
