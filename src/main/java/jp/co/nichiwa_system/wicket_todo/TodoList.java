@@ -29,8 +29,10 @@ class TodoList implements Serializable {
     private final List<Todo> list = new ArrayList<>();
 
     private Todo nextTask = new Todo();
+    private TodoRepositry todoRepositry;
 
-    public TodoList() {
+    TodoList(TodoRepositry todoRepositry) {
+        this.todoRepositry = todoRepositry;
     }
 
     void addTask() {
