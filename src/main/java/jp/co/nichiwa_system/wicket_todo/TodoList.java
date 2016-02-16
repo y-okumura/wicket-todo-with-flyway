@@ -16,7 +16,6 @@
 package jp.co.nichiwa_system.wicket_todo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,22 +25,20 @@ import java.util.List;
  */
 class TodoList implements Serializable {
 
-    private final List<Todo> list = new ArrayList<>();
-
+    private final TodoRepositry todoRepositry;
     private Todo nextTask = new Todo();
-    private TodoRepositry todoRepositry;
 
     TodoList(TodoRepositry todoRepositry) {
         this.todoRepositry = todoRepositry;
     }
 
     void addTask() {
-        list.add(nextTask);
+        todoRepositry.save(nextTask);
         nextTask = new Todo();
     }
 
     public List<Todo> getList() {
-        return Collections.unmodifiableList(list);
+        return Collections.unmodifiableList(todoRepositry.findAll());
     }
 
     /**

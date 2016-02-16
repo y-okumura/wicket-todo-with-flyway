@@ -18,7 +18,6 @@ package jp.co.nichiwa_system.wicket_todo;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,7 +28,7 @@ import javax.persistence.Id;
  * @author okumura
  */
 @Entity
-class Todo implements Serializable {
+public class Todo implements Serializable {
 
     private @Id @GeneratedValue Long id;
     private boolean done;
@@ -78,35 +77,5 @@ class Todo implements Serializable {
     @Override
     public String toString() {
         return MessageFormat.format("{0}{1}({2,date})", done ? '☑' : '□', description, due);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + (this.done ? 1 : 0);
-        hash = 73 * hash + Objects.hashCode(this.description);
-        hash = 73 * hash + Objects.hashCode(this.due);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Todo other = (Todo) obj;
-        if (this.done != other.done) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.due, other.due)) {
-            return false;
-        }
-        return true;
     }
 }

@@ -1,14 +1,17 @@
 package jp.co.nichiwa_system.wicket_todo;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import static org.hamcrest.Matchers.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import jp.co.nichiwa_system.wicket_todo.infrastracture.WicketApplication;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,8 +51,9 @@ public class TestHomePage {
         form.setValue("nextTask.due", "2016/2/1");
         form.submit("add");
         
-        tester.assertListView("todoList:list", Arrays.asList(
-                new Todo("新しいタスクの説明", new SimpleDateFormat("yyyyMMdd").parse("20160201"))
-        ));
+        ListView<Todo> listView = (ListView<Todo>)tester.getComponentFromLastRenderedPage("todoList:list");
+        Assert.assertThat(listView.getList(), hasItem(
+                both(hasProperty("description", is("新しいタスクの説明")))
+                .and(hasProperty("due", is(Timestamp.valueOf("2016-02-01 00:00:00"))))));
     }
 }
